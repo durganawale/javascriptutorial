@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>String Operation</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h1 class="tex-primary p-4 text-center">String Operation in javascript</h1>
+
+    <div class="container w-50">
+      <div class="mb-3">
+        <label for="inputpara" class="form-label">Example textarea</label>
+        <textarea class="form-control" id="inputpara" rows="3"></textarea>
+      </div>
+
+      <div
+        class="container bg-secondary"
+        style="color: white; height: 100px"
+        id="result"
+      >
+        Result Will Be show Here
+      </div>
+    </div>
+    <div class="container mt-3">
+      <div class="row mt-4">
+        <div class="col">
+          <button class="btn btn-primary" onclick="convertToUpperCase()">
+            Convert To Upper Case
+          </button>
+        </div>
+        <div class="col">
+          <button class="btn btn-primary" onclick="convertToLowerCase()">
+            Convert To Lower Case
+          </button>
+        </div>
+        <div class="col">
+          <button class="btn btn-primary" onclick="convertToCamaleCase()">
+            Convert To Camale Case
+          </button>
+        </div>
+        <div class="col">
+          <button class="btn btn-primary" onclick="extractFirstWord()">
+            Extract First World
+          </button>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col">
+          <button class="btn btn-primary" onclick="countLines()">
+            Count Number of Line
+          </button>
+        </div>
+        <div class="col">
+          <button class="btn btn-primary" onclick="countVolues()">
+            Count Volues
+          </button>
+        </div>
+        <div class="col">
+          <button class="btn btn-primary" onclick="CountConsonents()">
+            Count Consonents
+          </button>
+        </div>
+        <div class="col">
+          <button class="btn btn-primary" onclick="extractSpecialCharacters()">
+            Extract Special Characters
+          </button>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col">
+          <button class="btn btn-primary" onclick="checkPalindrom()">
+            Check Palindrom
+          </button>
+        </div>
+        <div class="col">
+          <button class="btn btn-primary" onclick="countSpaces()">
+            Count Specas
+          </button>
+        </div>
+        <div class="col">
+          <button class="btn btn-primary" onclick="replaceSpacesWithHyphens()">
+            Replace All Spaces With Hypens
+          </button>
+        </div>
+        <div class="col">
+          <button class="btn btn-primary" onclick="splitWords()">
+            Slot The Words
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
