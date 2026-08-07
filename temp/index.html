@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Array</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <!-- to do list managerr -->
+    <div class="container p-3">
+      <h1 class="container text-center">1.To Do List Manager</h1>
+      <div class="container w-50">
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter Task"
+            id="inputTask"
+          />
+          <button class="btn btn-primary me-2" onclick="addNewTask()">
+            Add To Task
+          </button>
+          <button class="btn btn-primary me-2" onclick="clearAll()">
+            Clear All
+          </button>
+        </div>
+        <ul id="Lists"></ul>
+      </div>
+    </div>
+    <hr/>
+
+
+
+
+
+     <!-- student Mark Calculater -->
+    <div class="container p-3">
+      <h1 class="container text-center">2.Student Marks Calculater</h1>
+      <div class="container w-50">
+      <div class="input-group mb-3">
+
+    <input type="number" class="form-control"placeholder="Enter the Marks" id="inputMarks">
+    <button class="btn btn-primary me-2" onclick="addMarks()">Add</button>
+
+    <button class="btn btn-primary me-2" onclick="CalculateMarks()">Calculate</button>
+
+    <button class="btn btn-primary me-2" onclick="ResetMarks()">Reset</button>
+
+</div>
+
+<h2>Student Marks</h2>
+<div id="displayMarks"></div>
+<h2>Total Marks</h2>
+<div id="totalMarks"></div>
+
+<h2>Average Marks</h2>
+<div id="Averagemark"></div>
+
+<h2>Highest Marks</h2>
+<div id="Higestmark"></div>
+
+<h2>Lowest Marks</h2>
+<div id="Lowestmark"></div>
+    </div>
+    </div>
+
+      <hr />
+    <!-- Search an Array -->
+<div>
+<div class=" container w-50">
+<input
+    type="text"
+    class="form-control"
+    id="SearchInput"
+    placeholder="Enter Name of Car">
+
+<button
+    class="btn btn-primary me-2"
+    onclick="searchItem()">
+    Search
+</button>
+
+<div id="Array"></div>
+<p id="Result"></p>
+</div>
+    
+<hr>
+  <!-- Filter The even odd number -->
+<div class="container p-3">
+  <h2 class="text-center">Filter The even odd number</h2>
+  <div class="container w-50">
+            <div class="input-group mb-3">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Enter the number"
+            id="num"
+          />
+<button class="btn me-2 btn-primary"onclick="addNumber()">addNumber</button>
+<button class="btn me-2 btn-primary"onclick="evenNumber()">evenShow</button>
+<button class="btn me-2 btn-primary"onclick="oddNumber()">oddShow</button>
+<button class="btn me-2 btn-primary"onclick="clearData()">clear</button>
+</div>
+  <h3>even Numbers</h3>
+<div id="even">
+  </div>
+    <h3>odd Numbers</h3>
+<div id="odd">
+</div>
+
+  </div>
+</div>
+
+
+
+</div>
+<hr/>
+      <!-- Sort The Number -->
+      <div class="container">
+        <h1 class="display-4 text-center">5. Sort Names Alphabetically</h1>
+      <div class="container w-50">
+          <input
+            type="text"
+            class="form-control me-2"
+            placeholder="Enter Name"
+            id="inputName"
+          />
+          <button class="btn btn-primary me-2" onclick="addName()">
+            Add Name
+          </button>
+          <button class="btn btn-primary me-2" onclick="sortArray()">
+            sort
+          </button>
+          <button class="btn btn-primary me-2" onclick="clearName()">
+            Reset
+          </button>
+        </div>
+
+        <h2>Unsort Name</h2>
+        <div id="UnsortName"></div>
+
+        <h2>Sort Array</h2>
+        <div id="sortName"></div>
+      </div>
+    </div>
+    </body>
+
+    <script src="./script.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
