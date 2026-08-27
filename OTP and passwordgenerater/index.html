@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Secure Password Generator</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        background-color: #f5f7fa;
+        font-family: Arial, sans-serif;
+      }
+
+      .password-box {
+        max-width: 650px;
+        margin: 50px auto;
+        background-color: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+      }
+
+      .title {
+        text-align: center;
+        margin-bottom: 25px;
+        font-weight: bold;
+      }
+
+      .option {
+        margin: 12px 0;
+      }
+
+      .generate-btn {
+        width: 100%;
+        margin-top: 15px;
+      }
+
+      .password-output {
+        margin-top: 20px;
+      }
+
+      .strength-bar {
+        height: 10px;
+        border-radius: 10px;
+        background-color: #ddd;
+        overflow: hidden;
+      }
+
+      .strength-fill {
+        height: 100%;
+        width: 0%;
+        transition: 0.3s;
+      }
+
+      .copy-btn {
+        margin-top: 12px;
+      }
+
+      #errorMessage {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="password-box">
+        <h2 class="title">🔐 Password Generator</h2>
+
+        <!-- Password Length -->
+        <label for="passwordLength" class="form-label">
+          <b>Password Length:</b>
+        </label>
+
+        <input
+          type="number"
+          id="passwordLength"
+          class="form-control"
+          value="12"
+          min="4"
+          max="50"
+        />
+
+        <!-- Options -->
+        <div class="option form-check">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="includeNumbers"
+            checked
+          />
+
+          <label class="form-check-label" for="includeNumbers">
+            Include Numbers
+          </label>
+        </div>
+
+        <div class="option form-check">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="includeUppercase"
+            checked
+          />
+
+          <label class="form-check-label" for="includeUppercase">
+            Include Uppercase
+          </label>
+        </div>
+
+        <div class="option form-check">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="includeSpecial"
+            checked
+          />
+
+          <label class="form-check-label" for="includeSpecial">
+            Include Special Characters
+          </label>
+        </div>
+
+        <div class="option form-check">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="excludeAmbiguous"
+            checked
+          />
+
+          <label class="form-check-label" for="excludeAmbiguous">
+            Exclude ambiguous characters (e.g. I, l, 1, O, 0)
+          </label>
+        </div>
+
+        <!-- Error -->
+        <div id="errorMessage" class="alert alert-danger mt-3"></div>
+
+        <!-- Generate Button -->
+        <button
+          class="btn btn-primary generate-btn"
+          onclick="generatePassword()"
+        >
+          Generate Password
+        </button>
+
+        <!-- Generated Password -->
+        <div class="password-output">
+          <label class="form-label">
+            <b>Generated Password:</b>
+          </label>
+
+          <input
+            type="password"
+            id="passwordOutput"
+            class="form-control"
+            readonly
+          />
+
+          <!-- Show Password -->
+          <div class="form-check mt-3">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="showPassword"
+              onchange="showHidePassword()"
+            />
+
+            <label class="form-check-label" for="showPassword">
+              Show Password
+            </label>
+          </div>
+
+          <!-- Strength -->
+          <div class="mt-3">
+            <b>Password Strength</b>
+
+            <div class="strength-bar mt-2">
+              <div id="strengthFill" class="strength-fill"></div>
+            </div>
+
+            <div id="strengthText" class="mt-2 fw-bold"></div>
+          </div>
+
+          <!-- Copy -->
+          <button
+            class="btn btn-outline-secondary copy-btn"
+            onclick="copyPassword()"
+          >
+            📋 Copy Password
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function generatePassword() {
+        let length = Number(document.getElementById("passwordLength").value);
+
+        let includeNumbers = document.getElementById("includeNumbers").checked;
+
+        let includeUppercase =
+          document.getElementById("includeUppercase").checked;
+
+        let includeSpecial = document.getElementById("includeSpecial").checked;
+
+        let excludeAmbiguous =
+          document.getElementById("excludeAmbiguous").checked;
+
+        let errorMessage = document.getElementById("errorMessage");
+
+        // Clear previous error
+        errorMessage.style.display = "none";
+
+        // Validate length
+        if (length < 4 || length > 50) {
+          errorMessage.innerText = "Password length must be between 4 and 50.";
+
+          errorMessage.style.display = "block";
+
+          return;
+        }
+
+        // Character sets
+        let lowercase = "abcdefghijklmnopqrstuvwxyz";
+
+        let uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+        let numbers = "0123456789";
+
+        let special = "!@#$%^&*()_+{}[]<>?";
+
+        // Remove ambiguous characters
+        if (excludeAmbiguous) {
+          lowercase = lowercase.replace(/[ilo]/g, "");
+
+          uppercase = uppercase.replace(/[ILO]/g, "");
+
+          numbers = numbers.replace(/[10]/g, "");
+        }
+
+        // Main character set
+        let characters = lowercase;
+
+        if (includeUppercase) {
+          characters += uppercase;
+        }
+
+        if (includeNumbers) {
+          characters += numbers;
+        }
+
+        if (includeSpecial) {
+          characters += special;
+        }
+
+        // Check if at least one option is selected
+        if (characters.length === 0) {
+          errorMessage.innerText =
+            "Please select at least one character option.";
+
+          errorMessage.style.display = "block";
+
+          return;
+        }
+
+        let password = "";
+
+        /*
+                crypto.getRandomValues()
+                provides stronger random values
+                than Math.random()
+            */
+
+        let randomArray = new Uint32Array(length);
+
+        crypto.getRandomValues(randomArray);
+
+        for (let i = 0; i < length; i++) {
+          let index = randomArray[i] % characters.length;
+
+          password += characters[index];
+        }
+
+        // Display password
+        document.getElementById("passwordOutput").value = password;
+
+        // Update strength
+        checkStrength(password);
+      }
+
+      function showHidePassword() {
+        let password = document.getElementById("passwordOutput");
+
+        let checkbox = document.getElementById("showPassword");
+
+        if (checkbox.checked) {
+          password.type = "text";
+        } else {
+          password.type = "password";
+        }
+      }
+
+      function copyPassword() {
+        let password = document.getElementById("passwordOutput").value;
+
+        if (password === "") {
+          alert("Please generate a password first.");
+
+          return;
+        }
+
+        navigator.clipboard.writeText(password).then(function () {
+          alert("Password copied!");
+        });
+      }
+
+      function checkStrength(password) {
+        let strength = 0;
+
+        // Length
+        if (password.length >= 8) {
+          strength++;
+        }
+
+        if (password.length >= 12) {
+          strength++;
+        }
+
+        // Lowercase
+        if (/[a-z]/.test(password)) {
+          strength++;
+        }
+
+        // Uppercase
+        if (/[A-Z]/.test(password)) {
+          strength++;
+        }
+
+        // Number
+        if (/[0-9]/.test(password)) {
+          strength++;
+        }
+
+        // Special character
+        if (/[^A-Za-z0-9]/.test(password)) {
+          strength++;
+        }
+
+        let fill = document.getElementById("strengthFill");
+
+        let text = document.getElementById("strengthText");
+
+        if (strength <= 2) {
+          fill.style.width = "30%";
+          fill.style.backgroundColor = "red";
+
+          text.innerText = "Weak";
+        } else if (strength <= 4) {
+          fill.style.width = "60%";
+          fill.style.backgroundColor = "orange";
+
+          text.innerText = "Medium";
+        } else {
+          fill.style.width = "100%";
+          fill.style.backgroundColor = "green";
+
+          text.innerText = "Very Strong";
+        }
+      }
+    </script>
+  </body>
+</html>
