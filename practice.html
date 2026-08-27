@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 id="HeddingONE">Welcome Student</h1>
+    <button id="HeaddingBTN">chenge Headding</button>
+    <script>
+      document.querySelector("#HeaddingBTN").addEventListener("click", () => {
+        document.querySelector("#HeddingONE").textContent =
+          "Welcome To Javascript Dom";
+      });
+    </script>
+
+    <hr />
+    <p id="paraOne">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero similique
+      sequi odit quas voluptatum eum rerum id minus perferendis, illum est
+      provident explicabo totam, autem dolore! In quas quae corporis.
+    </p>
+    <button id="RedBTN">Red</button>
+    <button id="GreenBTN">Green</button>
+    <button id="BlueBTN">Blue</button>
+    <script>
+      const parElmt = document.querySelector("#paraOne");
+      document.querySelector("#RedBTN").addEventListener("click", () => {
+        paraOne.style.color = "#FF0000";
+      });
+      document.querySelector("#GreenBTN").addEventListener("click", () => {
+        paraOne.style.color = "#00FF00";
+      });
+      document.querySelector("#BlueBTN").addEventListener("click", () => {
+        paraOne.style.color = "#0000FF";
+      });
+    </script>
+    <hr />
+    <p id="ParaTWO">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit deserunt
+      aspernatur ratione consequuntur debitis maxime doloremque temporibus
+      libero suscipit ut est nulla quia laudantium sint repellendus magni, earum
+      amet cumque?
+    </p>
+    <button onclick="ShowHide()">Show/Hide</button>
+    <script>
+      function showAndHide() {
+        const praTwoElmt = document.getElementById("paraTwo");
+        if (praTwoElmt.classList.contains("showMSG")) {
+          praTwoElmt.classList.remove("showMSG");
+          praTwoElmt.classList.add("hideMSG");
+        } else {
+          praTwoElmt.classList.add("showMSG");
+          praTwoElmt.classList.remove("hideMSG");
+        }
+      }
+    </script>
+    <button onclick="changeTheme()">Change theme</button>
+    <script>
+      function changeTheme() {
+        if (document.body.style.backgroundColor == "#000") {
+          console.log(document.body.style.backgroundColor);
+          document.body.style.backgroundColor = "#fff";
+          document.body.style.color = "#000";
+        } else {
+          document.body.style.backgroundColor = "#000";
+          document.body.style.color = "#fff";
+        }
+
+        if (document.body.classList.contains("lightTheme")) {
+          document.body.classList.remove("lightTheme");
+          document.body.classList.add("DarkTheme");
+        } else {
+          document.body.classList.add("lightTheme");
+          document.body.classList.remove("DarkTheme");
+        }
+      }
+    </script>
+
+    <hr />
+    <h1>Count:<span id="Count">0</span></h1>
+    <button id="increment">+</button>
+    <button id="Reset">Reset</button>
+    <button id="decrement">-</button>
+    <script>
+      let count = 0;
+      incrementBTN = document.querySelector("#increment");
+      resetBTN = document.querySelector("#Reset");
+      decrementBTN = document.querySelector("#decrement");
+      countELMT = document.querySelector("#Count");
+
+      incrementBTN.addEventListener("click", () => {
+        count++;
+        countELMT.textContent = count;
+      });
+      decrementBTN.addEventListener("click", () => {
+        if (count > 0) {
+          count--;
+        }
+        countELMT.textContent = count;
+      });
+      resetBTN.addEventListener("click", () => {
+        countELMT.textContent = 0;
+      });
+    </script>
+    <hr />
+    <button id="redBTN">Red</button>
+    <button id="greenBTN">GREEN</button>
+    <button id="yellowBTN">YELLOW</button>
+    <button id="blueBTN">BLUE</button>
+    <script>
+      document.querySelector("#redBTN").addEventListener("click", () => {
+        document.body.style.backgroundColor = "red";
+      });
+      document.querySelector("#greenBTN").addEventListener("click", () => {
+        document.body.style.backgroundColor = "green";
+      });
+      document.querySelector("#yellowBTN").addEventListener("click", () => {
+        document.body.style.backgroundColor = "yellow";
+      });
+      document.querySelector("#blueBTN").addEventListener("click", () => {
+        document.body.style.backgroundColor = "blue";
+      });
+      document.querySelector("#Reset").addEventListener("click", () => {
+        document.body.style.backgroundColor = "";
+      });
+    </script>
+    <hr />
+    <label for="">Enter your Name</label>
+    <input type="text" id="inputName" />
+    <button onclick="greedmee">greed Mee</button>
+    <p id="greedMSG"></p>
+    <script>
+      function greedmee() {
+        name = document.querySelector("#inputName").value;
+        document.querySelector("#greedMSG").textContent = "Welcome" + name;
+        document.querySelector("#inputName").value = "";
+      }
+    </script>
+    <hr />
+    <h2>Character Counter</h2>
+
+    <textarea id="message" maxlength="100" placeholder="Type your message...">
+    </textarea>
+
+    <div id="counter">Characters: 0 / 100</div>
+    <script>
+      const messageElmt = document.querySelector("#message");
+      const counterElmt = document.querySelector("#counter");
+
+      messageElmt.addEventListener("input", function () {
+        const currentLength = messageElmt.value.length;
+
+        const remaining = 100 - currentLength;
+
+        counterElmt.textContent = `Characters: ${currentLength} / 100`;
+
+        if (remaining < 10) {
+          counterElmt.classList.add("warning");
+        } else {
+          counterElmt.classList.remove("warning");
+        }
+      });
+    </script>
+    <hr />
+    <h2>Shopping List</h2>
+
+    <input type="text" id="itemInput" placeholder="Enter item" />
+    <button id="addBtn">Add</button>
+
+    <ul id="shoppingList"></ul>
+
+    <script>
+      const itemInput = document.querySelector("#itemInput");
+      const addBtn = document.querySelector("#addBtn");
+      const shoppingList = document.querySelector("#shoppingList");
+
+      addBtn.addEventListener("click", function () {
+        const item = itemInput.value;
+
+        if (item !== "") {
+          // Create new <li>
+          const li = document.createElement("li");
+
+          // Add entered text to <li>
+          li.textContent = item;
+
+          // Add <li> to <ul>
+          shoppingList.appendChild(li);
+
+          // Clear input
+          itemInput.value = "";
+        }
+      });
+    </script>
+    <hr />
+
+    <h2>To-Do Application</h2>
+
+    <input type="text" id="taskInput" placeholder="Enter task" />
+    <button id="addTaskBtn">Add Task</button>
+
+    <h3>Tasks</h3>
+
+    <ul id="taskList"></ul>
+
+    <script>
+      const taskInput = document.querySelector("#taskInput");
+      const addTaskBtn = document.querySelector("#addTaskBtn");
+      const taskList = document.querySelector("#taskList");
+
+      addTaskBtn.addEventListener("click", function () {
+        const taskText = taskInput.value.trim();
+
+        // Empty task check
+        if (taskText === "") {
+          return;
+        }
+
+        // Create li
+        const li = document.createElement("li");
+
+        // Create task text
+        const span = document.createElement("span");
+        span.textContent = taskText;
+
+        // Create Delete button
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+
+        // Add click event to task
+        span.addEventListener("click", function () {
+          span.classList.toggle("completed");
+        });
+
+        // Delete task
+        deleteBtn.addEventListener("click", function () {
+          li.remove();
+        });
+
+        // Add elements inside li
+        li.appendChild(span);
+        li.appendChild(document.createTextNode(" "));
+        li.appendChild(deleteBtn);
+
+        // Add li to ul
+        taskList.appendChild(li);
+
+        // Clear input
+        taskInput.value = "";
+      });
+    </script>
+    <hr />
+    <h2>Registration Form</h2>
+
+    <form id="registrationForm">
+      <label>Name</label><br />
+      <input type="text" id="name" />
+      <p id="nameError"></p>
+
+      <label>Email</label><br />
+      <input type="email" id="email" />
+      <p id="emailError"></p>
+
+      <label>Password</label><br />
+      <input type="password" id="password" />
+      <p id="passwordError"></p>
+
+      <button type="submit">Register</button>
+    </form>
+    <hr />
+    <h3 id="successMessage"></h3>
+
+    <script>
+      const form = document.querySelector("#registrationForm");
+
+      const nameInput = document.querySelector("#name");
+      const emailInput = document.querySelector("#email");
+      const passwordInput = document.querySelector("#password");
+
+      const nameError = document.querySelector("#nameError");
+      const emailError = document.querySelector("#emailError");
+      const passwordError = document.querySelector("#passwordError");
+
+      const successMessage = document.querySelector("#successMessage");
+
+      form.addEventListener("submit", function (event) {
+        // Prevent page reload
+        event.preventDefault();
+
+        // Clear old messages
+        nameError.textContent = "";
+        emailError.textContent = "";
+        passwordError.textContent = "";
+        successMessage.textContent = "";
+
+        // Get input values
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+
+        let isValid = true;
+
+        // Name validation
+        if (name === "") {
+          nameError.textContent = "Name cannot be empty.";
+          isValid = false;
+        }
+
+        // Email validation
+        if (email === "") {
+          emailError.textContent = "Email cannot be empty.";
+          isValid = false;
+        }
+
+        // Password validation
+        if (password.length < 6) {
+          passwordError.textContent =
+            "Password must contain at least 6 characters.";
+          isValid = false;
+        }
+
+        // If everything is valid
+        if (isValid) {
+          successMessage.textContent = "Registration Successful!";
+
+          // Optional: clear form
+          form.reset();
+        }
+      });
+    </script>
+  </body>
+</html>
